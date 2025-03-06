@@ -38,7 +38,17 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
             },
         )
 
-        model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
+        model: Annotated[
+            Literal[
+                "anthropic/claude-3-7-sonnet-latest",
+                "anthropic/claude-3-5-haiku-latest",
+                "openai/o1",
+                "openai/gpt-4o-mini",
+                "openai/o1-mini",
+                "openai/o3-mini",
+            ],
+            {"__template_metadata__": {"kind": "llm"}},
+        ] = field(
             default="anthropic/claude-3-5-sonnet-20240620",
             metadata={
                 "description": (
