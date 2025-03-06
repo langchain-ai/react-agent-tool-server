@@ -14,18 +14,15 @@ from react_agent.utils import load_chat_model
 async def make_graph(config: RunnableConfig) -> CompiledStateGraph:
     """Create a custom state graph for the Reasoning and Action agent."""
     configuration = APP_STATE.configurable.from_runnable_config(config)
-    # Add logic to select tools
-    if configuration.selected_tools:
-        selected_tools = [
-            tool
-            for tool in TOOLBOX.get_tools()
-            if tool.name in configuration.selected_tools
-        ]
-    else:
-        selected_tools = TOOLBOX.get_tools()
+
+    tools_to_use = [
+        tool
+        for tool in TOOLBOX.get_tools()
+        if tool.name in configuration.selected or not configuration.selected
+    ]
 
     # Initialize the model with tool binding. Change the model or add more tools here.
-    model = load_chat_model(configuration.model).bind_tools(selected_tools)
+    model = load_chat_model(configuration.model).bind_tools(tools_to_use)
 
     # Format the system prompt. Customize this to change the agent's behavior.
     system_message = configuration.system_prompt.format(
