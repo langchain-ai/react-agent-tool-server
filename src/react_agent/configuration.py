@@ -59,16 +59,6 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
             },
         )
 
-        max_search_results: int = field(
-            default=10,
-            metadata={
-                "description": (
-                    "The maximum number of search results to "
-                    "return for each search query."
-                )
-            },
-        )
-
         selected_tools: list[Literal[*APP_STATE.tool_names]] = field(
             default_factory=list,
             metadata={
