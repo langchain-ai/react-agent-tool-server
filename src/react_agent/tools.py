@@ -3,7 +3,7 @@
 import os
 
 from langchain_core.tools import BaseTool
-from open_tool_server import AsyncClient, get_async_client
+from open_tool_client import AsyncClient, get_async_client
 
 
 class Toolbox:
@@ -27,4 +27,17 @@ TOOL_SERVER_URL = os.getenv("TOOL_SERVER_URL")
 if not TOOL_SERVER_URL:
     raise ValueError("TOOL_SERVER_URL environment variable must be set")
 
-TOOLBOX = Toolbox(client=get_async_client(url=TOOL_SERVER_URL))
+
+TOOL_SERVER_API_KEY = os.getenv("TOOL_SERVER_API_KEY")
+
+if not TOOL_SERVER_API_KEY:
+    raise ValueError("TOOL_SERVER_API_KEY environment variable must be set")
+
+TOOLBOX = Toolbox(
+    client=get_async_client(
+        url=TOOL_SERVER_URL,
+        headers={
+            "Authorization": TOOL_SERVER_API_KEY,
+        },
+    )
+)

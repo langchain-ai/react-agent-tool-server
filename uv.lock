@@ -796,25 +796,6 @@ wheels = [
 ]
 
 [[package]]
-name = "mcp"
-version = "1.3.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "anyio" },
-    { name = "httpx" },
-    { name = "httpx-sse" },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "sse-starlette" },
-    { name = "starlette" },
-    { name = "uvicorn" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/6b/b6/81e5f2490290351fc97bf46c24ff935128cb7d34d68e3987b522f26f7ada/mcp-1.3.0.tar.gz", hash = "sha256:f409ae4482ce9d53e7ac03f3f7808bcab735bdfc0fba937453782efb43882d45", size = 150235 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d0/d2/a9e87b506b2094f5aa9becc1af5178842701b27217fa43877353da2577e3/mcp-1.3.0-py3-none-any.whl", hash = "sha256:2829d67ce339a249f803f22eba5e90385eafcac45c94b00cab6cef7e8f217211", size = 70672 },
-]
-
-[[package]]
 name = "msgpack"
 version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -989,20 +970,17 @@ wheels = [
 ]
 
 [[package]]
-name = "open-tool-server"
-version = "0.0.2"
+name = "open-tool-client"
+version = "0.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "fastapi" },
-    { name = "jsonschema-rs" },
+    { name = "httpx" },
     { name = "langchain-core" },
-    { name = "mcp" },
     { name = "orjson" },
-    { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/89/8d/4e0ac4b92fa09706bc45155dd48b1ce7bca083cca0b188a90fcfe1edf7f0/open_tool_server-0.0.2.tar.gz", hash = "sha256:1dea6da4b9937f56f2c0117c8a90a054a6bb26848418b558bcf5e37ae3360fb1", size = 71043 }
+sdist = { url = "https://files.pythonhosted.org/packages/85/b4/5a25bdfe765f859b9bee7ebcbcb708f0209b3b7678cefc5356235ac30bda/open_tool_client-0.0.1.tar.gz", hash = "sha256:6980524ff13d293e5573136dd1bfef3d75c8cb1e147814cbed800d3bd5a05814", size = 55707 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/35/c6/167a20ac9ca07d0c4b98ce0c54facb4970838db1ea5a98a0c333d29a1f70/open_tool_server-0.0.2-py3-none-any.whl", hash = "sha256:b5fc76046c71637774b7538574bc109c1bd96b4459edb812d13b5f1402279f59", size = 18272 },
+    { url = "https://files.pythonhosted.org/packages/00/1a/cb01c9989d6f5c160fbeba9f718d924fea18c91f78b5977a9c00c3db5d85/open_tool_client-0.0.1-py3-none-any.whl", hash = "sha256:55caebfccf2cd95c43acb9a26821c28e0c1270aad27765311af3f4742bc6519e", size = 7479 },
 ]
 
 [[package]]
@@ -1279,19 +1257,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pydantic-settings"
-version = "2.8.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dotenv" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/88/82/c79424d7d8c29b994fb01d277da57b0a9b09cc03c3ff875f9bd8a86b2145/pydantic_settings-2.8.1.tar.gz", hash = "sha256:d5c663dfbe9db9d5e1c646b2e161da12f0d734d422ee56f567d0ea2cee4e8585", size = 83550 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/53/a64f03044927dc47aafe029c42a5b7aabc38dfb813475e0e1bf71c4a59d0/pydantic_settings-2.8.1-py3-none-any.whl", hash = "sha256:81942d5ac3d905f7f3ee1a70df5dfb62d5569c12f51a5a647defc1c3d9ee2e9c", size = 30839 },
-]
-
-[[package]]
 name = "pyjwt"
 version = "2.10.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1354,7 +1319,7 @@ dependencies = [
     { name = "langchain-anthropic" },
     { name = "langchain-fireworks" },
     { name = "langchain-openai" },
-    { name = "open-tool-server" },
+    { name = "open-tool-client" },
     { name = "python-dotenv" },
 ]
 
@@ -1371,7 +1336,7 @@ requires-dist = [
     { name = "langchain-anthropic", specifier = ">=0.1.23" },
     { name = "langchain-fireworks", specifier = ">=0.1.7" },
     { name = "langchain-openai", specifier = ">=0.1.22" },
-    { name = "open-tool-server", specifier = ">=0.0.2" },
+    { name = "open-tool-client", specifier = ">=0.0.1" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
 ]
 

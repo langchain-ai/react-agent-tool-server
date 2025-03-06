@@ -15,7 +15,7 @@ dependencies = [
     "langchain-fireworks>=0.1.7",
     "python-dotenv>=1.0.1",
     "fastapi>=0.115.11",
-    "open-tool-server>=0.0.2",
+    "open-tool-client>=0.0.1",
 ]
 
 
