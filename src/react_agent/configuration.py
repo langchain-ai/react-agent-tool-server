@@ -49,7 +49,7 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
             ],
             {"__template_metadata__": {"kind": "llm"}},
         ] = field(
-            default="claude-3-5-haiku-latest",
+            default="anthropic/claude-3-5-haiku-latest",
             metadata={
                 "description": (
                     "The name of the language model to use for the agent's "
