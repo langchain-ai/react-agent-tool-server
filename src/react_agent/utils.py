@@ -7,6 +7,7 @@ import typing
 from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import BaseMessage
+from functools import lru_cache
 
 
 def get_message_text(msg: BaseMessage) -> str:
@@ -21,6 +22,7 @@ def get_message_text(msg: BaseMessage) -> str:
         return "".join(txts).strip()
 
 
+@lru_cache(maxsize=12)
 def load_chat_model(fully_specified_name: str) -> BaseChatModel:
     """Load a chat model from a fully specified name.
 
