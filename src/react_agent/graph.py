@@ -18,7 +18,7 @@ async def make_graph(config: RunnableConfig) -> CompiledStateGraph:
     tools_to_use = [
         tool
         for tool in TOOLBOX.get_tools()
-        if tool.name in configuration.selected or not configuration.selected
+        if tool.name in configuration.selected_tools or not configuration.selected_tools
     ]
 
     # Initialize the model with tool binding. Change the model or add more tools here.
