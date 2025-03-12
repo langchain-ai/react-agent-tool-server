@@ -3,22 +3,42 @@
 import os
 
 from langchain_core.tools import BaseTool
-from open_tool_client import AsyncClient, get_async_client
+from universal_tool_client import AsyncClient, get_async_client
 
 
 class Toolbox:
+    """A container for managing and accessing LangChain tools.
+
+    This class handles the initialization and retrieval of tools from a remote tool server.
+    """
+
     def __init__(self, client: AsyncClient) -> None:
+        """Initialize the Toolbox with an AsyncClient.
+
+        Args:
+            client: The AsyncClient instance used to communicate with the tool server.
+        """
         self.tools = []
         self.client = client
 
     async def initialize(self) -> None:
+        """Asynchronously fetch and initialize the tools from the remote server."""
         self.tools = await self.client.tools.as_langchain_tools()
 
     def get_tool_names(self) -> list[str]:
+        """Get a list of names of all available tools.
+
+        Returns:
+            A list of tool names as strings.
+        """
         return [tool.name for tool in self.tools]
 
     def get_tools(self) -> list[BaseTool]:
-        """Get tools."""
+        """Get all available tools.
+
+        Returns:
+            A list of BaseTool instances.
+        """
         return self.tools
 
 
