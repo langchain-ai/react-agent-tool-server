@@ -69,6 +69,7 @@ See the [example-tool-server](https://github.com/langchain-ai/example-tool-serve
 If you already have a tool server running, you can launch the ReAct agent with the following command:
 
 ```shell
-TOOL_SERVER_URL=http://localhost:8000 uv run langgraph dev
+TOOL_SERVER_API_KEY="Authorization header token" # This depends on how you have configured the tool server, and whether you have enabled authentication. if there's no authentication, just put a random string here.
+TOOL_SERVER_URL=http://localhost:8000 TOOL_SERVER_API_KEY=$TOOL_SERVER_API_KEY uv run langgraph dev
 ```
 
