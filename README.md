@@ -3,7 +3,7 @@
 
 # LangGraph ReAct Agent Template (WIP)
 
-A template that deploys a ReAct agent with access to an [open-tool-server](https://github.com/langchain-ai/open-tool-server/).
+A template that deploys a ReAct agent with access to an [universal-tool-server](https://github.com/langchain-ai/universal-tool-server/).
 
 ## Getting Started
 
