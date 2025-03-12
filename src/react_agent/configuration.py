@@ -57,7 +57,7 @@ def identify_available_model_providers() -> list[str]:
 
 
 PROVIDER_TO_MODELS = {
-    "openai": ["openai/o1", "openai/gpt-4o-mini", "openai/o1-mini", "openai/o3-mini"],
+    "openai": ["openai/gpt-4o-mini", "openai/o3-mini"],
     "anthropic": [
         "anthropic/claude-3-7-sonnet-latest",
         "anthropic/claude-3-5-haiku-latest",
