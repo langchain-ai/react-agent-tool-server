@@ -85,6 +85,8 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
     # the json schema for the configuration.
     APP_STATE.tool_names = toolbox.get_tool_names()
     AVAILABLE_MODELS = get_available_models()
+    if len(AVAILABLE_MODELS) < 1:
+        raise ValueError("No models available for the agent.")
     APP_STATE.available_model_names = AVAILABLE_MODELS
 
     @dataclass(kw_only=True)
@@ -103,7 +105,7 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
             Literal[*APP_STATE.available_model_names,],
             {"__template_metadata__": {"kind": "llm"}},
         ] = field(
-            default="anthropic/claude-3-5-haiku-latest",
+            default=APP_STATE.available_model_names[0],
             metadata={
                 "description": (
                     "The name of the language model to use for the agent's "
