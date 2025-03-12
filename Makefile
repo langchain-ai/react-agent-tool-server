@@ -7,7 +7,7 @@ all: help
 TEST_FILE ?= tests/unit_tests/
 
 test:
-	TOOL_SERVER_API_KEY=placeholder TOOL_SERVER_URL=http://localhost:8080 python -m pytest $(TEST_FILE)
+	TOOL_SERVER_API_KEY=placeholder TOOL_SERVER_URL=http://localhost:8080 uv run pytest $(TEST_FILE)
 
 
 ######################
@@ -35,10 +35,10 @@ format format_diff:
 	uv run ruff check --select I --fix $(PYTHON_FILES)
 
 spell_check:
-	codespell --toml pyproject.toml
+	uv run codespell --toml pyproject.toml
 
 spell_fix:
-	codespell --toml pyproject.toml -w
+	uv run codespell --toml pyproject.toml -w
 
 ######################
 # HELP
