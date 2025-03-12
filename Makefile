@@ -7,7 +7,7 @@ all: help
 TEST_FILE ?= tests/unit_tests/
 
 test:
-	TOOL_SERVER_API_KEY=placeholder TOOL_SERVER_URL=http://localhost:8080 uv run pytest $(TEST_FILE)
+	ANTHROPIC_API_KEY=placeholder TOOL_SERVER_API_KEY=placeholder TOOL_SERVER_URL=http://localhost:8080 uv run pytest $(TEST_FILE)
 
 
 ######################

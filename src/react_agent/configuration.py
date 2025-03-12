@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import importlib
+import os
 from dataclasses import dataclass, field, fields
 from typing import Annotated, Literal, Optional
 
@@ -14,6 +16,63 @@ from react_agent import prompts, tools, utils
 # needs to be generated dynamically based on the available tools.
 APP_STATE = utils.State()
 
+PROVIDER_SECRET_PACKAGE = [
+    ("openai", "OPENAI_API_KEY", "langchain_openai"),
+    ("anthropic", "ANTHROPIC_API_KEY", "langchain_anthropic"),
+]
+
+
+def identify_available_model_providers() -> list[str]:
+    """Determine which model providers are available."""
+    available_providers = []
+    for provider, secret, package in PROVIDER_SECRET_PACKAGE:
+        if not os.environ.get(secret):
+            continue
+
+        if not importlib.util.find_spec(package):
+            continue
+
+        available_providers.append(provider)
+
+    if not available_providers:
+        providers = ", ".join([p for p, _, _ in PROVIDER_SECRET_PACKAGE])
+
+        msg = (
+            "Could not use any chat models. You must install the appropriate package "
+            "and set the required environment variables.\n"
+            f"You can use any of the following providers: {providers}\n"
+            "To do that you will need to install the package and set the required "
+            "environment variables."
+        )
+
+        for provider, secret, package in PROVIDER_SECRET_PACKAGE:
+            msg += (
+                f"\n\nFor {provider} models, install the package '{package}' "
+                f"and set the environment variable '{secret}'."
+            )
+
+        raise ValueError(msg)
+
+    return available_providers
+
+
+PROVIDER_TO_MODELS = {
+    "openai": ["openai/o1", "openai/gpt-4o-mini", "openai/o1-mini", "openai/o3-mini"],
+    "anthropic": [
+        "anthropic/claude-3-7-sonnet-latest",
+        "anthropic/claude-3-5-haiku-latest",
+    ],
+}
+
+
+def get_available_models() -> list[str]:
+    """Get the available models for the given providers."""
+    available_models = []
+    providers = identify_available_model_providers()
+    for provider in providers:
+        available_models.extend(PROVIDER_TO_MODELS[provider])
+    return available_models
+
 
 def create_configurable(toolbox: tools.Toolbox) -> None:
     """Dynamically create a configuration schema for the agent.
@@ -25,6 +84,10 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
     # to make the type information available when generating
     # the json schema for the configuration.
     APP_STATE.tool_names = toolbox.get_tool_names()
+    AVAILABLE_MODELS = get_available_models()
+    if len(AVAILABLE_MODELS) < 1:
+        raise ValueError("No models available for the agent.")
+    APP_STATE.available_model_names = AVAILABLE_MODELS
 
     @dataclass(kw_only=True)
     class Config:
@@ -39,17 +102,10 @@ def create_configurable(toolbox: tools.Toolbox) -> None:
         )
 
         model: Annotated[
-            Literal[
-                "anthropic/claude-3-7-sonnet-latest",
-                "anthropic/claude-3-5-haiku-latest",
-                "openai/o1",
-                "openai/gpt-4o-mini",
-                "openai/o1-mini",
-                "openai/o3-mini",
-            ],
+            Literal[*APP_STATE.available_model_names,],
             {"__template_metadata__": {"kind": "llm"}},
         ] = field(
-            default="anthropic/claude-3-5-haiku-latest",
+            default=APP_STATE.available_model_names[0],
             metadata={
                 "description": (
                     "The name of the language model to use for the agent's "
