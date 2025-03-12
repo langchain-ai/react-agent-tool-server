@@ -1,4 +1,4 @@
-.PHONY: all format lint test tests test_watch integration_tests docker_tests help extended_tests
+.PHONY: all format lint test tests test_watch integration_tests docker_tests help
 
 # Default target executed when no arguments are given to make.
 all: help
@@ -7,16 +7,7 @@ all: help
 TEST_FILE ?= tests/unit_tests/
 
 test:
-	python -m pytest $(TEST_FILE)
-
-test_watch:
-	python -m ptw --snapshot-update --now . -- -vv tests/unit_tests
-
-test_profile:
-	python -m pytest -vv tests/unit_tests/ --profile-svg
-
-extended_tests:
-	python -m pytest --only-extended $(TEST_FILE)
+	TOOL_SERVER_API_KEY=placeholder TOOL_SERVER_URL=http://localhost:8080 python -m pytest $(TEST_FILE)
 
 
 ######################

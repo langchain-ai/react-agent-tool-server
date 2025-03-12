@@ -3,7 +3,7 @@
 import os
 
 from langchain_core.tools import BaseTool
-from open_tool_client import AsyncClient, get_async_client
+from universal_tool_client import AsyncClient, get_async_client
 
 
 class Toolbox:
