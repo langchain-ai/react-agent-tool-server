@@ -74,8 +74,12 @@ If you already have a tool server running, you can launch the ReAct agent with t
 # Specify at least one chat model API key!
 export ANTHROPIC_API_KEY="..."
 export OPENAI_API_KEY="..."
-# Specify the tool server URL and API key
-TOOL_SERVER_API_KEY="Authorization header token" # This depends on how you have configured the tool server, and whether you have enabled authentication. if there's no authentication, just put a random string here.
-TOOL_SERVER_URL=http://localhost:8000 TOOL_SERVER_API_KEY=$TOOL_SERVER_API_KEY uv run langgraph dev
-```
+# If you enabled auth on the tool server, set the API key.
+# If you disabled auth, you set it to a non empty placeholder string.
+export TOOL_SERVER_API_KEY="Authorization header token"
+# Set the tool server URL
+export TOOL_SERVER_URL="http://localhost:8000"
+# Launch the ReAct agent
+uv run langgraph dev
+````
 
