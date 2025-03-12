@@ -10,8 +10,10 @@ Use the LangGraph Studio UI to create and manage agents via simple configuration
 
 ## Getting started
 
-1. [Deploy a universal-tool-server](#deploy-a-universal-tool-server).
-2. [Launch the ReAct agent locally](#launch-the-react-agent).
+To use this template, follow these steps:
+
+1. [Deploy a universal-tool-server](#deploy-a-universal-tool-server): You can use the example tool server or create your own.
+2. [Launch the ReAct agent locally](#launch-the-react-agent): Use the tool server URL and API key to launch the ReAct agent locally.
 3. Deploy on LangGraph Cloud: Follow the tutorial here: https://langchain-ai.github.io/langgraph/cloud/quick_start/, but fork this repository instead of the regular react agent template.
 
 ### Deploy a Universal Tool Server
@@ -69,6 +71,7 @@ See the [example-tool-server](https://github.com/langchain-ai/example-tool-serve
 If you already have a tool server running, you can launch the ReAct agent with the following command:
 
 ```shell
-TOOL_SERVER_URL=http://localhost:8000 uv run langgraph dev
+TOOL_SERVER_API_KEY="Authorization header token" # This depends on how you have configured the tool server, and whether you have enabled authentication. if there's no authentication, just put a random string here.
+TOOL_SERVER_URL=http://localhost:8000 TOOL_SERVER_API_KEY=$TOOL_SERVER_API_KEY uv run langgraph dev
 ```
 
