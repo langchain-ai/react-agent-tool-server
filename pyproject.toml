@@ -84,7 +84,6 @@ langchain-tool-server = { path = "../langchain-tool-server" }
 [dependency-groups]
 dev = [
     "langgraph-cli[inmem]>=0.1.71",
-    "ruff>=0.9.9",
 ]
 test = [
     "pytest>=8.3.5",

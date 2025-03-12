@@ -1369,7 +1369,6 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "langgraph-cli", extra = ["inmem"] },
-    { name = "ruff" },
 ]
 test = [
     { name = "pytest" },
@@ -1390,10 +1389,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [
-    { name = "langgraph-cli", extras = ["inmem"], specifier = ">=0.1.71" },
-    { name = "ruff", specifier = ">=0.9.9" },
-]
+dev = [{ name = "langgraph-cli", extras = ["inmem"], specifier = ">=0.1.71" }]
 test = [
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-asyncio", specifier = ">=0.25.3" },
