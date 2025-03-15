@@ -6,5 +6,8 @@
   "env": ".env",
   "http": {
     "app": "./src/react_agent/lifespan.py:app"
+  },
+  "auth": {
+    "path": "./src/react_agent/auth.py:auth"
   }
 }
