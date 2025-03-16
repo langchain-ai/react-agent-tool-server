@@ -1,13 +1,10 @@
 {
   "dependencies": ["."],
   "graphs": {
-    "agent": "./src/react_agent/graph.py:make_graph"
-  },
-  "env": ".env",
-  "http": {
-    "app": "./src/react_agent/lifespan.py:app"
+    "agent": "./src/react_agent/graph1.py:make_graph"
   },
   "auth": {
     "path": "./src/react_agent/auth.py:auth"
-  }
+  },
+  "env": ".env"
 }
