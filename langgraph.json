@@ -5,6 +5,7 @@
   },
   "env": ".env",
   "http": {
-    "app": "./src/react_agent/lifespan.py:app"
+    "app": "./src/react_agent/lifespan.py:app",
+    "disable_mcp": false
   }
 }
